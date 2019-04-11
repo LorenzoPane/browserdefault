@@ -1,0 +1,9 @@
+Package: com.lpane.browserdefault
+Name: BrowserDefault
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Modify the default browser for links to open in.
+Maintainer: lpane
+Author: lpane
+Section: Tweaks

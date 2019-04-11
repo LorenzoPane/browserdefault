@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Browser Default</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Test Selection</string>
+			<key>action</key>
+			<string>openGoogle</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkListCell</string>
+			<key>label</key>
+			<string>Default Browser</string>
+			<key>key</key>
+			<string>picker</string>
+			<key>defaults</key>
+			<string>com.lpane.browserdefaultpref</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>detail</key>
+			<string>PSListItemsController</string>
+			<key>validValues</key>
+			<array>
+				<string>com.apple.mobilesafari</string>
+				<string>org.mozilla.firefox</string>
+				<string>com.mozilla.io.Focus</string>
+				<string>com.google.chrome.ios</string>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>Safari</string>
+				<string>Firefox</string>
+				<string>Firefox Focus</string>
+				<string>Google Chrome</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>It may take a moment to update</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>BrowserDefaultPrefs</string>
+</dict>
+</plist>
