@@ -1,5 +1,5 @@
 # BrowserDefault
-BrowserDefault allows users to choose the browser to be opened when clicking on a link.
+BrowserDefault allows users to choose the browser links are opened in.
 
 # Support
 BrowserDefault currently supports:
