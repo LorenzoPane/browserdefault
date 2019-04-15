@@ -1,13 +1,19 @@
-@interface UIApplication(LLAdditions)
+@interface FBSOpenApplicationOptions : NSObject
+@property (nonatomic,copy) NSDictionary * dictionary;
+@end
+
+@interface FBSystemServiceOpenApplicationRequest : NSObject
+@property (nonatomic,copy) NSString * bundleIdentifier;
+@end
+
+@interface FBSystemServiceOpenApplicationRequest(LLAdditions)
 + (NSURL *)modifiedURL:(NSURL *)url;
 @end
 
-%hook UIApplication
+%hook FBSystemServiceOpenApplicationRequest
 
 %new
 + (NSURL *)modifiedURL:(NSURL *)url {
-	NSLog(@"called");
-
 	NSString *strungURL = [url absoluteString];
 	NSRange httpLocation = [strungURL rangeOfString: @"http"];
 
@@ -20,7 +26,7 @@
 	//test valid url & current app
 	if(httpLocation.location == 0 && ![[[NSBundle mainBundle] bundleIdentifier] isEqual:bundle]) {
 		//firefox focus requires url to be encoded
-		if([bundle isEqualToString:@"com.mozilla.io.Focus"]) {
+		if([bundle isEqualToString:@"org.mozilla.ios.Focus"]) {
 			scheme = @"firefox-focus://open-url?url=";
 			strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		}
@@ -37,7 +43,7 @@
 			}
 		}
 
-		if([bundle isEqualToString:@"org.mozilla.firefox"]) {
+		if([bundle isEqualToString:@"org.mozilla.ios.Firefox"]) {
 			scheme = @"firefox://open-url?url=";
 		}
 	}
@@ -45,29 +51,22 @@
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", scheme, strungURL]];
 }
 
-- (BOOL)openURL:(NSURL *)url {
-	url = [[self class] modifiedURL:url];
-	return %orig;
-}
-
-- (void)openURL:(id)arg1 withCompletionHandler:(id)arg2 {
-	arg1 = (id)[[self class] modifiedURL:arg1];
+- (void)setBundleIdentifier:(NSString *)arg1 {
+	if([arg1 isEqualToString:@"com.apple.mobilesafari"]) {
+		arg1 = [[[NSMutableDictionary alloc] initWithContentsOfFile: @"/var/mobile/Library/Preferences/com.lpane.browserdefaultpref.plist"] valueForKey:@"picker"];
+	}
 	%orig;
 }
 
-- (void)openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options completionHandler:(void (^)(BOOL success))completion {
-	url = [[self class] modifiedURL:url];
+- (void)setOptions:(FBSOpenApplicationOptions *)arg1 {
+	if([self.bundleIdentifier isEqualToString:@"org.mozilla.ios.Focus"] || [self.bundleIdentifier isEqualToString:@"org.mozilla.ios.Firefox"]) {
+		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+		[dict addEntriesFromDictionary: [arg1 dictionary]];
+		//modify url with scheme
+		[dict setObject:[%c(FBSystemServiceOpenApplicationRequest) modifiedURL:[dict objectForKey:@"__PayloadURL"]] forKey:@"__PayloadURL"];
+		[arg1 setDictionary:dict];
+	}
 	%orig;
-}
-
-- (BOOL)_openURL:(NSURL *)url {
-	url = [[self class] modifiedURL:url];
-	return %orig;
-}
-
--(void)_openURL:(id)arg1 originatingView:(id)arg2 completionHandler:(/*^block*/id)arg3  {
-	arg1 = (id)[[self class] modifiedURL:arg1];
-	return %orig;
 }
 
 %end

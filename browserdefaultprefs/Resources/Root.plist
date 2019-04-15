@@ -34,8 +34,8 @@
 			<key>validValues</key>
 			<array>
 				<string>com.apple.mobilesafari</string>
-				<string>org.mozilla.firefox</string>
-				<string>com.mozilla.io.Focus</string>
+				<string>org.mozilla.ios.Firefox</string>
+				<string>org.mozilla.ios.Focus</string>
 				<string>com.google.chrome.ios</string>
 			</array>
 			<key>validTitles</key>
