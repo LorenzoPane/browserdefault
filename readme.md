@@ -7,6 +7,7 @@ BrowserDefault currently supports:
 - Firefox
 - Firefox Focus
 - Google Chrome
+- Brave
 
 # Usage
 Users can change their default browser by going to the BrowserDefault panel in the stock Settings app.  Note that it may take several seconds for the settings to update.
