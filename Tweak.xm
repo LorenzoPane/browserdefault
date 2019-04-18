@@ -41,7 +41,6 @@
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", scheme, strungURL]];
 }
 
-//TODO: Remove dependancy on order in setBundleIdentifier and setOptions
 - (void)setBundleIdentifier:(NSString *)arg1 {
 	if([arg1 isEqualToString:@"com.apple.mobilesafari"]) {
 		arg1 = [[[NSMutableDictionary alloc] initWithContentsOfFile: @"/var/mobile/Library/Preferences/com.lpane.browserdefaultpref.plist"] valueForKey:@"picker"];
@@ -50,7 +49,10 @@
 }
 
 - (void)setOptions:(FBSOpenApplicationOptions *)arg1 {
-	if([[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Firefox"] || [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Focus"] || [[self bundleIdentifier] isEqualToString:@"com.brave.ios.browser"]) {
+	if([[self bundleIdentifier] isEqualToString:@"com.apple.mobilesafari"]
+			|| [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Firefox"]
+			|| [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Focus"]
+			|| [[self bundleIdentifier] isEqualToString:@"com.brave.ios.browser"]) {
 		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 		[dict addEntriesFromDictionary: [arg1 dictionary]];
 
