@@ -37,6 +37,7 @@
 				<string>org.mozilla.ios.Firefox</string>
 				<string>org.mozilla.ios.Focus</string>
 				<string>com.google.chrome.ios</string>
+				<string>com.brave.ios.browser</string>
 			</array>
 			<key>validTitles</key>
 			<array>
@@ -44,6 +45,7 @@
 				<string>Firefox</string>
 				<string>Firefox Focus</string>
 				<string>Google Chrome</string>
+				<string>Brave</string>
 			</array>
 		</dict>
 		<dict>

@@ -21,15 +21,21 @@
 
 	NSString *scheme = @"";
 
-	//firefox focus requires url to be encoded
+	//firefox focus and brave requires url to be encoded
 	if([bundle isEqualToString:@"org.mozilla.ios.Focus"]) {
 		scheme = @"firefox-focus://open-url?url=";
+		strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	}
+
+	if([bundle isEqualToString:@"com.brave.ios.browser"]) {
+		scheme = @"brave://open-url?url=";
 		strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	}
 
 	if([bundle isEqualToString:@"org.mozilla.ios.Firefox"]) {
 		scheme = @"firefox://open-url?url=";
 	}
+
 
 	//return NSURL object containing the scheme, followed by the strung url
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", scheme, strungURL]];
@@ -44,7 +50,7 @@
 }
 
 - (void)setOptions:(FBSOpenApplicationOptions *)arg1 {
-	if([[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Firefox"] || [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Focus"]) {
+	if([[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Firefox"] || [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Focus"] || [[self bundleIdentifier] isEqualToString:@"com.brave.ios.browser"]) {
 		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 		[dict addEntriesFromDictionary: [arg1 dictionary]];
 
