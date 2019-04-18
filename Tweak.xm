@@ -36,7 +36,6 @@
 		scheme = @"firefox://open-url?url=";
 	}
 
-
 	//return NSURL object containing the scheme, followed by the strung url
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", scheme, strungURL]];
 }
