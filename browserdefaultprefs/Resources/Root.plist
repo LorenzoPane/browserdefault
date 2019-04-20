@@ -39,6 +39,7 @@
 				<string>com.google.chrome.ios</string>
 				<string>com.brave.ios.browser</string>
 				<string>com.cloudmosa.PuffinFree</string>
+				<string>RAPS.appstore.com.dolphin.browser.iphone</string>
 			</array>
 			<key>validTitles</key>
 			<array>
@@ -48,6 +49,7 @@
 				<string>Google Chrome</string>
 				<string>Brave</string>
 				<string>Puffin</string>
+				<string>Dolphin X</string>
 			</array>
 		</dict>
 		<dict>
