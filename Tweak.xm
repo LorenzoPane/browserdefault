@@ -36,6 +36,11 @@
 		scheme = @"firefox://open-url?url=";
 	}
 
+	if([bundle isEqualToString:@"com.lipslabs.cake"]) {
+		scheme = @"cakebrowser://open-url?url=";
+		strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	}
+
 	//return NSURL object containing the scheme, followed by the strung url
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", scheme, strungURL]];
 }
@@ -51,7 +56,8 @@
 	if([[self bundleIdentifier] isEqualToString:@"com.apple.mobilesafari"]
 		|| [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Firefox"]
 		|| [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Focus"]
-		|| [[self bundleIdentifier] isEqualToString:@"com.brave.ios.browser"]) {
+		|| [[self bundleIdentifier] isEqualToString:@"com.brave.ios.browser"]
+		|| [[self bundleIdentifier] isEqualToString:@"com.lipslabs.cake"]) {
 		
 		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 		[dict addEntriesFromDictionary: [arg1 dictionary]];

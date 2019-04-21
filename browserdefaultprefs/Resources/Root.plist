@@ -40,6 +40,7 @@
 				<string>com.brave.ios.browser</string>
 				<string>com.cloudmosa.PuffinFree</string>
 				<string>RAPS.appstore.com.dolphin.browser.iphone</string>
+				<string>com.lipslabs.cake</string>
 			</array>
 			<key>validTitles</key>
 			<array>
@@ -50,6 +51,7 @@
 				<string>Brave</string>
 				<string>Puffin</string>
 				<string>Dolphin X</string>
+				<string>Cake</string>
 			</array>
 		</dict>
 		<dict>
