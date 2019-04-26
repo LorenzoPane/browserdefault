@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
+	<dict>
+		<key>title</key>
+		<string>Browser Default</string>
 	<key>items</key>
 	<array>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Browser Default</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>label</key>
-			<string>Test Selection</string>
-			<key>action</key>
-			<string>openGoogle</string>
+			<string>Preset Browser</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -24,7 +18,7 @@
 			<key>label</key>
 			<string>Default Browser</string>
 			<key>key</key>
-			<string>picker</string>
+			<string>bundle</string>
 			<key>defaults</key>
 			<string>com.lpane.browserdefaultpref</string>
 			<key>default</key>
@@ -41,6 +35,7 @@
 				<string>com.cloudmosa.PuffinFree</string>
 				<string>RAPS.appstore.com.dolphin.browser.iphone</string>
 				<string>com.lipslabs.cake</string>
+				<string>custom</string>
 			</array>
 			<key>validTitles</key>
 			<array>
@@ -52,7 +47,64 @@
 				<string>Puffin</string>
 				<string>Dolphin X</string>
 				<string>Cake</string>
+				<string>Custom (specify options below)</string>
 			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Custom Browser</string>
+		</dict>
+		<dict>
+			<key>defaults</key>
+			<string>com.lpane.browserdefaultpref</string>
+			<key>key</key>
+			<string>customBundleID</string>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>label</key>
+			<string>Bundle ID</string>
+			<key>placeholder</key>
+			<string>com.apple.safari</string>
+		</dict>
+		<dict>
+			<key>defaults</key>
+			<string>com.lpane.browserdefaultpref</string>
+			<key>key</key>
+			<string>customScheme</string>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>placeholder</key>
+			<string>scheme://</string>
+			<key>label</key>
+			<string>URL Scheme (if applicable)</string>
+		</dict>
+		<dict>
+			<key>defaults</key>
+			<string>com.lpane.browserdefaultpref</string>
+			<key>key</key>
+			<string>customPercentEscapes</string>
+			<key>default</key>
+			<false/>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>label</key>
+			<string>Use Percent Escapes</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Test Selection</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Open Github</string>
+			<key>action</key>
+			<string>openLink</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -60,8 +112,7 @@
 			<key>footerText</key>
 			<string>It may take a moment to update</string>
 		</dict>
+
 	</array>
-	<key>title</key>
-	<string>BrowserDefaultPrefs</string>
 </dict>
 </plist>

@@ -1,3 +1,5 @@
+#import "BDDefaultBrowser.m"
+
 @interface FBSOpenApplicationOptions : NSObject
 @property (nonatomic,copy) NSDictionary * dictionary;
 @end
@@ -6,68 +8,24 @@
 @property (nonatomic,copy) NSString * bundleIdentifier;
 @end
 
-@interface FBSystemServiceOpenApplicationRequest(LLAdditions)
-+ (NSURL *)modifiedURL:(NSURL *)url;
-@end
-
 %hook FBSystemServiceOpenApplicationRequest
 
-%new
-+ (NSURL *)modifiedURL:(NSURL *)url {
-	NSString *strungURL = [url absoluteString];
-
-	//get bundle id from preferences
-	NSString *bundle = [[[NSMutableDictionary alloc] initWithContentsOfFile: @"/var/mobile/Library/Preferences/com.lpane.browserdefaultpref.plist"] valueForKey:@"picker"];
-
-	NSString *scheme = @"";
-
-	//firefox focus and brave requires url to be encoded
-	if([bundle isEqualToString:@"org.mozilla.ios.Focus"]) {
-		scheme = @"firefox-focus://open-url?url=";
-		strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	}
-
-	if([bundle isEqualToString:@"com.brave.ios.browser"]) {
-		scheme = @"brave://open-url?url=";
-		strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	}
-
-	if([bundle isEqualToString:@"org.mozilla.ios.Firefox"]) {
-		scheme = @"firefox://open-url?url=";
-	}
-
-	if([bundle isEqualToString:@"com.lipslabs.cake"]) {
-		scheme = @"cakebrowser://open-url?url=";
-		strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	}
-
-	//return NSURL object containing the scheme, followed by the strung url
-	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", scheme, strungURL]];
-}
-
 - (void)setBundleIdentifier:(NSString *)arg1 {
-	if([arg1 isEqualToString:@"com.apple.mobilesafari"]) {
-		arg1 = [[[NSMutableDictionary alloc] initWithContentsOfFile: @"/var/mobile/Library/Preferences/com.lpane.browserdefaultpref.plist"] valueForKey:@"picker"];
-	}
+	if([arg1 isEqualToString:@"com.apple.mobilesafari"])
+		arg1 = [[%c(BDDefaultBrowser) browserFromPrefs:[[NSMutableDictionary alloc] initWithContentsOfFile: @"/var/mobile/Library/Preferences/com.lpane.browserdefaultpref.plist"]] bundleID];
 	%orig;
 }
 
 - (void)setOptions:(FBSOpenApplicationOptions *)arg1 {
-	if([[self bundleIdentifier] isEqualToString:@"com.apple.mobilesafari"]
-		|| [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Firefox"]
-		|| [[self bundleIdentifier] isEqualToString:@"org.mozilla.ios.Focus"]
-		|| [[self bundleIdentifier] isEqualToString:@"com.brave.ios.browser"]
-		|| [[self bundleIdentifier] isEqualToString:@"com.lipslabs.cake"]) {
-		
+	BDDefaultBrowser *defaultBrowser = [%c(BDDefaultBrowser) browserFromPrefs:[[NSMutableDictionary alloc] initWithContentsOfFile: @"/var/mobile/Library/Preferences/com.lpane.browserdefaultpref.plist"]];
+	if([[self bundleIdentifier] isEqualToString:@"com.apple.mobilesafari"]|| [[self bundleIdentifier] isEqualToString:[defaultBrowser bundleID]]) {
 		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 		[dict addEntriesFromDictionary: [arg1 dictionary]];
-
-		//modify url with scheme
-		[dict setObject:[[self class] modifiedURL:[dict objectForKey:@"__PayloadURL"]] forKey:@"__PayloadURL"];
+		
+		[dict setObject:[defaultBrowser modifiedURL:[dict objectForKey:@"__PayloadURL"]] forKey:@"__PayloadURL"];
 
 		[arg1 setDictionary:dict];
 	}
-
 	%orig;
 }
 

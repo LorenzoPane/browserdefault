@@ -6,12 +6,11 @@
 	if (!_specifiers) {
 		_specifiers = [[self loadSpecifiersFromPlistName:@"Root" target:self] retain];
 	}
-
 	return _specifiers;
 }
 
-- (void)openGoogle {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://google.com"]
+- (void)openLink {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/LorenzoPane/browserdefault"]
 	options:@{}
 	completionHandler:nil];
 }
