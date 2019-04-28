@@ -29,7 +29,7 @@
 }
 
 - (NSURL *)modifiedURL:(NSURL *)url {
-	NSString *strungURL = [url absoluteString];
+	NSString *strungURL = [[url absoluteString] substringFromIndex:[[url absoluteString] rangeOfString:@"http"].location];
 	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _scheme, strungURL]];
 }
