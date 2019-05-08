@@ -1,12 +1,5 @@
 #import "BDDefaultBrowser.m"
-
-@interface FBSOpenApplicationOptions : NSObject
-@property (nonatomic,copy) NSDictionary * dictionary;
-@end
-
-@interface FBSystemServiceOpenApplicationRequest : NSObject
-@property (nonatomic,copy) NSString * bundleIdentifier;
-@end
+#import "PrivateFrameworkHeaders.h"
 
 %hook FBSystemServiceOpenApplicationRequest
 
@@ -18,10 +11,10 @@
 
 - (void)setOptions:(FBSOpenApplicationOptions *)arg1 {
 	BDDefaultBrowser *defaultBrowser = [%c(BDDefaultBrowser) browserFromPrefs:[[NSMutableDictionary alloc] initWithContentsOfFile: @"/var/mobile/Library/Preferences/com.lpane.browserdefaultpref.plist"]];
-	if([[self bundleIdentifier] isEqualToString:@"com.apple.mobilesafari"]|| [[self bundleIdentifier] isEqualToString:[defaultBrowser bundleID]]) {
+	if([[self bundleIdentifier] isEqualToString:@"com.apple.mobilesafari"] || [[self bundleIdentifier] isEqualToString:[defaultBrowser bundleID]]) {
 		NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 		[dict addEntriesFromDictionary: [arg1 dictionary]];
-		
+
 		[dict setObject:[defaultBrowser modifiedURL:[dict objectForKey:@"__PayloadURL"]] forKey:@"__PayloadURL"];
 
 		[arg1 setDictionary:dict];
