@@ -11,6 +11,7 @@ BrowserDefault currently includes presets for the following browsers:
 - Puffin
 - Dolphin X
 - Cake
+- Opera
 
 # Usage
 Users can change their default browser to a preset by going to the BrowserDefault panel in the stock Settings app.  Note that it may take several seconds for the settings to update.

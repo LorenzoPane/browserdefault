@@ -15,8 +15,6 @@
 	if([bundle isEqualToString:@"com.cloudmosa.PuffinFree"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
 	if([bundle isEqualToString:@"RAPS.appstore.com.dolphin.browser.iphone"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
 	if([bundle isEqualToString:@"com.lipslabs.cake"]) return [browser initWithBundle:bundle scheme:@"cakebrowser://open-url?url=" percentEscapes:true];
-	
-	//Opera Touch, (testflight {1.6.1})
 	if([bundle isEqualToString:@"com.opera.OperaTouch"]) return [browser initWithBundle:bundle scheme:@"touch-" percentEscapes:true];
 
 	//custom browser
