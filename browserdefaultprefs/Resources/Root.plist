@@ -35,6 +35,7 @@
 				<string>com.cloudmosa.PuffinFree</string>
 				<string>RAPS.appstore.com.dolphin.browser.iphone</string>
 				<string>com.lipslabs.cake</string>
+				<string>com.opera.OperaTouch</string>
 				<string>custom</string>
 			</array>
 			<key>validTitles</key>
@@ -47,6 +48,7 @@
 				<string>Puffin</string>
 				<string>Dolphin X</string>
 				<string>Cake</string>
+				<string>Opera Touch</string>
 				<string>Custom (specify options below)</string>
 			</array>
 		</dict>
