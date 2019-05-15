@@ -30,7 +30,11 @@
 }
 
 - (NSURL *)modifiedURL:(NSURL *)url {
-	NSString *strungURL = [[url absoluteString] substringFromIndex:[[url absoluteString] rangeOfString:@"http"].location];
+    NSInteger strungURLStartIndex = [[url absoluteString] rangeOfString:@"http"].location;
+    if (strungURLStartIndex == NSNotFound) {
+        return url;
+    }
+    NSString *strungURL = [[url absoluteString] substringFromIndex:strungURLStartIndex];
 	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _scheme, strungURL]];
 }
