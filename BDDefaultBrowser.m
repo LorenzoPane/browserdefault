@@ -30,11 +30,17 @@
 }
 
 - (NSURL *)modifiedURL:(NSURL *)url {
-    NSInteger strungURLStartIndex = [[url absoluteString] rangeOfString:@"http"].location;
-    if (strungURLStartIndex == NSNotFound) {
-        return url;
-    }
-    NSString *strungURL = [[url absoluteString] substringFromIndex:strungURLStartIndex];
+	if([[url scheme] isEqualToString:@"x-web-search"]) {
+		NSString *query = [[url absoluteString] substringFromIndex:16];
+		url = [NSURL URLWithString:[NSString stringWithFormat:@"https://google.com/search?q=%@", query]];
+	}
+
+	NSInteger strungURLStartIndex = [[url absoluteString] rangeOfString:@"http"].location;
+	if (strungURLStartIndex == NSNotFound) {
+		return url;
+	}
+
+	NSString *strungURL = [[url absoluteString] substringFromIndex:strungURLStartIndex];
 	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _scheme, strungURL]];
 }
