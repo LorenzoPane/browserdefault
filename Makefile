@@ -4,6 +4,8 @@ include $(THEOS)/makefiles/common.mk
 TWEAK_NAME = BrowserDefault
 BrowserDefault_FILES = Tweak.xm
 
+ADDITIONAL_OBJCFLAGS = -fobjc-arc
+
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 after-install::

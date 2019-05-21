@@ -10,12 +10,12 @@
 	if([bundle isEqualToString:@"com.apple.mobilesafari"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
 	if([bundle isEqualToString:@"org.mozilla.ios.Firefox"]) return [browser initWithBundle:bundle scheme:@"firefox://open-url?url=" percentEscapes:false];
 	if([bundle isEqualToString:@"org.mozilla.ios.Focus"]) return [browser initWithBundle:bundle scheme:@"firefox-focus://open-url?url=" percentEscapes:true];
-	if([bundle isEqualToString:@"com.google.chrome.ios"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
+	if([bundle isEqualToString:@"com.google.chrome.ios"]) return [browser initWithBundle:bundle scheme:@"googlechromes://" percentEscapes:false];
 	if([bundle isEqualToString:@"com.brave.ios.browser"]) return [browser initWithBundle:bundle scheme:@"brave://open-url?url=" percentEscapes:true];
 	if([bundle isEqualToString:@"com.cloudmosa.PuffinFree"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
 	if([bundle isEqualToString:@"RAPS.appstore.com.dolphin.browser.iphone"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
 	if([bundle isEqualToString:@"com.lipslabs.cake"]) return [browser initWithBundle:bundle scheme:@"cakebrowser://open-url?url=" percentEscapes:true];
-	if([bundle isEqualToString:@"com.opera.OperaTouch"]) return [browser initWithBundle:bundle scheme:@"touch-" percentEscapes:true];
+	if([bundle isEqualToString:@"com.opera.OperaTouch"]) return [browser initWithBundle:bundle scheme:@"touch-https://" percentEscapes:true];
 
 	//custom browser
 	return [browser initWithBundle:[prefs valueForKey:@"customBundleID"] scheme:[prefs valueForKey:@"customScheme"] percentEscapes:[prefs valueForKey:@"customPercentEscapes"]];
@@ -35,12 +35,10 @@
 		url = [NSURL URLWithString:[NSString stringWithFormat:@"https://google.com/search?q=%@", query]];
 	}
 
-	NSInteger strungURLStartIndex = [[url absoluteString] rangeOfString:@"http"].location;
-	if (strungURLStartIndex == NSNotFound) {
-		return url;
-	}
+	NSString *strungURL = [url absoluteString];
+	if([url scheme] != nil)
+		strungURL = [[strungURL stringByReplacingOccurrencesOfString:[url scheme] withString:@""] substringFromIndex:3];
 
-	NSString *strungURL = [[url absoluteString] substringFromIndex:strungURLStartIndex];
 	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _scheme, strungURL]];
 }
