@@ -30,16 +30,18 @@
 }
 
 - (NSURL *)modifiedURL:(NSURL *)url {
-	if([[url scheme] isEqualToString:@"x-web-search"]) {
+	NSString *scheme = [url scheme];
+	if([scheme  isEqualToString:@"x-web-search"]) {
 		NSString *query = [[url absoluteString] substringFromIndex:16];
 		url = [NSURL URLWithString:[NSString stringWithFormat:@"https://google.com/search?q=%@", query]];
 	}
 
 	NSString *strungURL = [url absoluteString];
-	if([url scheme] != nil)
-		strungURL = [[strungURL stringByReplacingOccurrencesOfString:[url scheme] withString:@""] substringFromIndex:3];
+	if(scheme != nil) {
+		strungURL = [strungURL substringFromIndex:[scheme length] + 3];
+	}
 
-	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _scheme, strungURL]];
 }
 

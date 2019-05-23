@@ -1,7 +1,7 @@
 Package: com.lpane.browserdefault
 Name: BrowserDefault
 Depends: mobilesubstrate
-Version: 1.8.4
+Version: 1.9.0
 Architecture: iphoneos-arm
 Description: BrowserDefault allows users to choose the browser links are opened in.
 Maintainer: lpane
