@@ -43,8 +43,6 @@
 		url = [NSURL URLWithString:strungURL];
 	}
 
-	//strungURL = [NSString stringWithFormat:@"https://%@", strungURL];
-
 	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _scheme, strungURL]];
 }
