@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-	<dict>
-		<key>title</key>
-		<string>Browser Default</string>
+<dict>
+	<key>title</key>
+	<string>Browser Default</string>
 	<key>items</key>
 	<array>
 		<dict>
@@ -36,6 +36,7 @@
 				<string>RAPS.appstore.com.dolphin.browser.iphone</string>
 				<string>com.lipslabs.cake</string>
 				<string>com.opera.OperaTouch</string>
+				<string>com.duckduckgo.mobile.ios</string>
 				<string>custom</string>
 			</array>
 			<key>validTitles</key>
@@ -49,6 +50,7 @@
 				<string>Dolphin X</string>
 				<string>Cake</string>
 				<string>Opera Touch</string>
+				<string>DuckDuckGo</string>
 				<string>Custom (specify options below)</string>
 			</array>
 		</dict>
@@ -114,7 +116,6 @@
 			<key>footerText</key>
 			<string>It may take a moment to update</string>
 		</dict>
-
 	</array>
 </dict>
 </plist>
