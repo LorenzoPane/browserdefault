@@ -16,7 +16,7 @@
 	if([bundle isEqualToString:@"RAPS.appstore.com.dolphin.browser.iphone"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
 	if([bundle isEqualToString:@"com.lipslabs.cake"]) return [browser initWithBundle:bundle scheme:@"cakebrowser://open-url?url=" percentEscapes:true];
 	if([bundle isEqualToString:@"com.opera.OperaTouch"]) return [browser initWithBundle:bundle scheme:@"touch-https://" percentEscapes:true];
-    if([bundle isEqualToString:@"com.duckduckgo.mobile.ios"]) return [browser initWithBundle:bundle scheme:@"ddgQuickLink://" percentEscapes:false];
+	if([bundle isEqualToString:@"com.duckduckgo.mobile.ios"]) return [browser initWithBundle:bundle scheme:@"ddgQuickLink://" percentEscapes:false];
 
 	//custom browser
 	return [browser initWithBundle:[prefs valueForKey:@"customBundleID"] scheme:[prefs valueForKey:@"customScheme"] percentEscapes:[prefs valueForKey:@"customPercentEscapes"]];
