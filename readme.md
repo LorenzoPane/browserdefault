@@ -2,7 +2,7 @@
 BrowserDefault allows users to choose the browser links are opened in.
 
 # Support
-BrowserDefault currently includes presets for the following browsers: 
+BrowserDefault currently includes presets for the following browsers:
 - Safari (obviously)
 - Firefox
 - Firefox Focus
@@ -12,6 +12,7 @@ BrowserDefault currently includes presets for the following browsers:
 - Dolphin X
 - Cake
 - Opera
+- DuckDuckGo
 - iCabMobile
 
 # Usage
