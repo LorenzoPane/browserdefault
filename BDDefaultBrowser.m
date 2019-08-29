@@ -44,7 +44,8 @@
 		url = [NSURL URLWithString:strungURL];
 	}
 
-	if(_percentEscapes) strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+	if(_percentEscapes)
+		strungURL = [strungURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""]];
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", _scheme, strungURL]];
 }
 
