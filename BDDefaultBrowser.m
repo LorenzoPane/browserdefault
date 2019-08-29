@@ -17,6 +17,7 @@
 	if([bundle isEqualToString:@"com.lipslabs.cake"]) return [browser initWithBundle:bundle scheme:@"cakebrowser://open-url?url=" percentEscapes:true];
 	if([bundle isEqualToString:@"com.opera.OperaTouch"]) return [browser initWithBundle:bundle scheme:@"touch-https://" percentEscapes:true];
 	if([bundle isEqualToString:@"com.duckduckgo.mobile.ios"]) return [browser initWithBundle:bundle scheme:@"ddgQuickLink://" percentEscapes:false];
+	if([bundle isEqualToString:@"de.icab.iCabMobile"]) return [browser initWithBundle:bundle scheme:@"x-icabmobile://x-callback-url/open?destination=newTab&fullscreen=no&url=" percentEscapes:true];
 
 	//custom browser
 	return [browser initWithBundle:[prefs valueForKey:@"customBundleID"] scheme:[prefs valueForKey:@"customScheme"] percentEscapes:[prefs valueForKey:@"customPercentEscapes"]];
