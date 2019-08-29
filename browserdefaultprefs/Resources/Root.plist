@@ -37,6 +37,7 @@
 				<string>com.lipslabs.cake</string>
 				<string>com.opera.OperaTouch</string>
 				<string>com.duckduckgo.mobile.ios</string>
+				<string>de.icab.iCabMobile</string>
 				<string>custom</string>
 			</array>
 			<key>validTitles</key>
@@ -51,6 +52,7 @@
 				<string>Cake</string>
 				<string>Opera Touch</string>
 				<string>DuckDuckGo</string>
+				<string>iCabMobile</string>
 				<string>Custom (specify options below)</string>
 			</array>
 		</dict>
