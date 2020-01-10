@@ -8,7 +8,7 @@
 
 	//presets
 	if([bundle isEqualToString:@"com.apple.mobilesafari"]) return [browser initWithBundle:bundle scheme:@"" percentEscapes:false];
-	if([bundle isEqualToString:@"org.mozilla.ios.Firefox"]) return [browser initWithBundle:bundle scheme:@"firefox://open-url?url=https://" percentEscapes:false];
+	if([bundle isEqualToString:@"org.mozilla.ios.Firefox"]) return [browser initWithBundle:bundle scheme:@"firefox://open-url?url=https://" percentEscapes:true];
 	if([bundle isEqualToString:@"org.mozilla.ios.Focus"]) return [browser initWithBundle:bundle scheme:@"firefox-focus://open-url?url=" percentEscapes:true];
 	if([bundle isEqualToString:@"com.google.chrome.ios"]) return [browser initWithBundle:bundle scheme:@"googlechromes://" percentEscapes:false];
 	if([bundle isEqualToString:@"com.brave.ios.browser"]) return [browser initWithBundle:bundle scheme:@"brave://open-url?url=https://" percentEscapes:true];
