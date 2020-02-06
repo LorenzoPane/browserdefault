@@ -1,3 +1,4 @@
+#import <Foundation/Foundation.h>
 #import "BDDefaultBrowser.h"
 
 @implementation BDDefaultBrowser
@@ -20,7 +21,7 @@
 	if([bundle isEqualToString:@"de.icab.iCabMobile"]) return [browser initWithBundle:bundle scheme:@"x-icabmobile://x-callback-url/open?destination=newTab&fullscreen=no&url=" percentEscapes:true];
 
 	//custom browser
-	return [browser initWithBundle:[prefs valueForKey:@"customBundleID"] scheme:[prefs valueForKey:@"customScheme"] percentEscapes:[prefs valueForKey:@"customPercentEscapes"]];
+	return [browser initWithBundle:[prefs valueForKey:@"customBundleID"] scheme:[prefs valueForKey:@"customScheme"] percentEscapes:[[prefs valueForKey:@"customPercentEscapes"] boolValue]];
 }
 
 - (instancetype)initWithBundle:(NSString *)bundle scheme:(NSString *)scheme percentEscapes:(bool)percentEscapes {
